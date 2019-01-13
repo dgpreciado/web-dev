@@ -1,0 +1,23 @@
+td{
+    width: 100px;
+    height: 100px;
+}
+table{
+    border: none;
+    margin: 0 auto;
+    border: 1px dotted red;
+
+}
+.vertical{
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+.horizontal{
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+div{
+    /* width: 50%; */
+    /* margin: 0 auto; */
+    border: 2px dotted blue;
+}
