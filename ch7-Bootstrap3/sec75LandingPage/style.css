@@ -1,0 +1,15 @@
+div{
+    margin:25px;
+    float: left;
+}
+.inputBtn{
+    width:500px;
+}
+.spanborder{
+    padding: 5px;
+    border: 2px dotted lightblue;
+}
+h1{
+    margin: 25px auto;
+    text-align: center;
+}
