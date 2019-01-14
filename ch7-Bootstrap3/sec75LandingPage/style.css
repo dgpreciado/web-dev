@@ -1,9 +1,14 @@
+body{
+    border: 2px solid gray;
+    margin-top: 1%;
+}
 div{
-    margin:25px;
+    padding: 25px;
+    margin: 10px auto;
     float: left;
 }
 .inputBtn{
-    width:500px;
+    width:50%;
 }
 .spanborder{
     padding: 5px;
@@ -12,4 +17,8 @@ div{
 h1{
     margin: 25px auto;
     text-align: center;
+}
+.jumbotron{
+    width:100%;
+
 }
