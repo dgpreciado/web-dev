@@ -1,5 +1,9 @@
 div{
-    border: 5px solid gray;
+    border: 10px solid gray;
     width: 50%;
+    margin: auto;
+}
+hr{
+    width:95%;
     margin: auto;
 }
