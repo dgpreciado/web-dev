@@ -2,11 +2,6 @@ body{
     border: 2px solid gray;
     margin-top: 1%;
 }
-div{
-    padding: 25px;
-    margin: 10px auto;
-    float: left;
-}
 .inputBtn{
     width:50%;
 }
@@ -20,4 +15,7 @@ h1{
 }
 .jumbotron{
     width:100%;
+}
+#float{
+    margin-top: 3rem;
 }
