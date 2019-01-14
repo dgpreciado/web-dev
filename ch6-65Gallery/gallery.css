@@ -1,0 +1,13 @@
+img{
+    width: 30%;
+    float: left;
+    margin: 1% 1.66%;
+}
+h1{
+    font-family: 'IBM Plex Mono', monospace;
+    margin: 1% 1.66%;
+    text-transform: uppercase;
+    border-bottom: 2px solid lightgray;
+    width: 30%;
+    padding-bottom: 20px;
+}
