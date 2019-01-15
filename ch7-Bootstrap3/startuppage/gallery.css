@@ -1,0 +1,18 @@
+body{
+    padding-top: 70px;
+}
+.jcenter{
+    text-align: center;
+}
+hr{
+    border: none;
+    height: 3px;
+    background: lightgrey;
+    width: 20em;
+}
+/* hr {
+    margin: auto 25px;
+    background-color: lightgray;
+    border: none;
+    height: 3px;
+} */
