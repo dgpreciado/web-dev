@@ -11,14 +11,22 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>
+    <div class="container" style="width: 500px; background:lightgray; padding: 5px">
+        <h1 class="display-5" >
             EZ PZ Role Calculator
         </h1>
-        <p>Enter a Role Value.</p>
-        <input type="number" min="2" id='userInput'>
-        <button onclick="myFunction()">Try it</button>
-        <p>Refresh the page to clear the text</p>
+        <p>Enter a Role Value:</p>
+
+<div class="input-group mb-3" style="width: 480px;">
+    <input type="number" class="form-control" min="2" id='userInput' placeholder="Role Value"
+        aria-label="Users Role Value"
+        aria-describedby="button-addon2" >
+    <div class="input-group-append">
+        <button class="btn btn-success" type="button" id="button-addon2" onclick="myFunction()" >Try it</button>
+        <button class="btn btn-warning" type="button" onclick="location.reload(true);" >Clear</button>
+    </div>
+</div>
+
         <ul id="myList">
         </ul>
     </div>
