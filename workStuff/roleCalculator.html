@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Role Calculator</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            EZ PZ Role Calculator
+        </h1>
+        <p>Enter a Role Value.</p>
+        <input type="number" min="2" id='userInput'>
+        <button onclick="myFunction()">Try it</button>
+        <p>Refresh the page to clear the text</p>
+        <ul id="myList">
+        </ul>
+    </div>
+
+    <!-- js -->
+    <script>
+        var roles = ['None', 'Faculty', 'Staff', 'StudentEmployee', 'Student', 'COOP Student', 'Transcript',
+            'Sponsored', 'Retiree', 'Special', 'Alumni', 'Other', 'LeaveAdmin', 'PHDStudent', 'Affiliate',
+            'Adjunct', 'Emeritus'
+        ];
+        var po2 = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536];
+
+        function myFunction() {
+            var userIn = document.getElementById('userInput').value;
+            for (var i = 16; i > 0; i--) {
+                if (po2[i] <= userIn) {
+                    print(roles[i]);
+                    userIn -= po2[i];
+                }
+            }
+            if (userIn != 0) {
+                print("Invalid number!! remaining value is " + userIn);
+            }
+        }
+
+        function print(roleText) {
+            var node = document.createElement("LI");
+            var textnode = document.createTextNode(roleText);
+            node.appendChild(textnode);
+            document.getElementById("myList").appendChild(node);
+        }
+    </script>
+</body>
+
+</html>
