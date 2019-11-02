@@ -1,0 +1,122 @@
+select first_name,last_name,length(first_name),length(last_name) from employees;
+
+select concat(first_name,last_name) from employees;
+
+select first_name ||' '|| last_name from employees;
+
+desc employees;
+
+select first_name,instr(first_name,'d',1) from employees;
+
+select * from employees;
+
+select lpad(first_name,10,'&') from employees;
+
+select rpad(first_name,13,'&') from employees;
+
+select to_char(salary,'L999G999') from employees;
+
+select first_name, to_char(hire_date,'MM/DD/YYYY') from employees;
+
+select first_name, hire_date from employees
+WHERE to_char(hire_date,'MON')= 'JAN';
+
+select first_name, hire_date from employees
+WHERE to_char(hire_date,'MM')= '01';
+
+select UPPER('hello world') FROM DUAL;
+
+select round(999.987654,4) from dual;
+
+select trunc(999.98765432,4) from dual;
+
+select to_char(sysdate,'MON-DD-YYYY HH24:MI:SS') from dual;
+
+select systimestamp from dual;
+
+select sysdate, hire_date, round(months_between(sysdate,hire_date),2) as monthsInBetween from employees;
+select sysdate, hire_date, round(months_between(sysdate,hire_date)/12,2) as YearsInBetween from employees;
+
+select sysdate, add_months(sysdate,1),add_months(sysdate,2),add_months(sysdate,3) from dual;
+
+/*ANSI syntax*/
+select ee.first_name, ee.last_name, dd.department_name from employees ee join departments dd on ee.department_id = dd.department_id;
+select ee.first_name, ee.last_name, dd.department_name from employees ee inner join departments dd on ee.department_id = dd.department_id;
+select ee.first_name, ee.last_name, dd.department_name from employees ee left join departments dd on ee.department_id = dd.department_id;
+select ee.first_name, ee.last_name, dd.department_name from employees ee right join departments dd on ee.department_id = dd.department_id;
+select ee.first_name, ee.last_name, dd.department_name from employees ee full join departments dd on ee.department_id = dd.department_id;
+/*Oracle syntax*/
+select ee.first_name, ee.last_name, dd.department_name from employees ee, departments dd where ee.department_id = dd.department_id;--join
+select ee.first_name, ee.last_name, dd.department_name from employees ee, departments dd where ee.department_id = dd.department_id(+);--left join
+select ee.first_name, ee.last_name, dd.department_name from employees ee, departments dd where ee.department_id(+) = dd.department_id;--right join
+
+/* DML data modification language: insert into employee (id,name) values (1,'Picard')*/
+/*DDL data definition language language: create table test_table1 (coll varchar2(100),col2 number); not sure if coll should be col1*/
+
+--create table test_table1 (col1 varchar2(100), col2 number(5));
+
+--insert into test_table1 values ('Hello', 79912);
+--insert into test_table1 values ('World', 79968);
+--insert into test_table1 (col1) values ('dennis');
+
+/*Transaction commit and rollback*/
+--COMMIT 
+    --COMMENT 'test_table rows inserted'
+--insert into test_table1 (col2) values (-1);
+--rollback;
+
+--delete from test_table1 where col2 is null;
+/*delete from test_table1 will delete all rows in table*/
+--ROLLBACK
+
+--UPDATE test_table1 set col2=0 where col2 is null;
+
+/*truncate table test_table1; is a DDL and rollback will have no effect*/
+--alter table test_table1 add (col3 number(10));
+--alter table test_table1 drop column col3;
+
+select * from test_table1;
+
+/*aggregate functions*/
+select department_id,max(salary),min(salary),round(avg(salary),2) avg ,sum(salary) sum from employees  group by department_id order by max(salary) desc;
+select department_id, count(*) num_empl from employees group by department_id order by num_empl desc;
+/*having*/
+select department_id,round(avg(salary)) as avg_sal from employees group by department_id having avg(salary) > 9000 and MAX(salary) < 15000;
+
+/*drop table*/
+/*
+create table test_table2 (col1 number(10) primary key, col2 varchar(20) not null);
+select * from test_table2;
+desc test_table2;
+drop table test_table2;
+*/
+/*constraints*//*
+create table demo_table_new
+(id NUMBER(4), name varchar2(50),
+CONSTRAINT check_uppercase_name
+check (name =upper(name)));
+*/
+insert into demo_table_new values (1,'dennis');--check constraint (HR.CHECK_UPPERCASE_NAME) violated
+insert into demo_table_new values (1,'Dennis');--check constraint (HR.CHECK_UPPERCASE_NAME) violated
+insert into demo_table_new values (1,'DENNIS');--row inserted
+
+/*Foreign keys*/
+--CREATE table test_suppliers (id number(10) primary key, name varchar2(50) not null);--creates table that is referenced
+/*CREATE table test_products1
+(id number(10) not null, 
+name varchar2(50) not null, 
+supplier_id number(10) not null,
+CONSTRAINT fk_supplier 
+FOREIGN KEY (supplier_id) 
+REFERENCES test_suppliers(id));
+*/
+insert into test_suppliers values (1,'linkedin');
+insert into test_products1 values (20,'oracle training',1);
+insert into test_products1 values (25,'oracle training2',2);--integrity constraint (HR.FK_SUPPLIER) violated - parent key not found
+
+/*subqueries*/
+select * from employees where department_id=20;
+select * from employees where department_id= (select department_id FROM departments WHERE department_name = 'Marketing');
+
+select * from (select first_name,last_name from employees where salary > 10000);
+COMMIT
