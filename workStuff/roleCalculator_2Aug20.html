@@ -11,23 +11,17 @@
 </head>
 
 <body>
-    <div class="container" style="width: 500px; background:lightgray; padding: 5px">
-        <h1 class="display-5" >
+    <div class="container">
+        <h1>
             EZ PZ Role Calculator
         </h1>
-        <p>Enter a Role Value:</p>
-
-<div class="input-group mb-3" style="width: 480px;">
-    <input type="number" class="form-control" min="2" id='userInput' placeholder="Role Value"
-        aria-label="Users Role Value"
-        aria-describedby="button-addon2" >
-    <div class="input-group-append">
-        <button class="btn btn-success" type="button" id="button-addon2" onclick="myFunction()" >Try it</button>
-        <button class="btn btn-warning" type="button" onclick="location.reload(true);" >Clear</button>
-    </div>
-</div>
-
-        <ul id="myList">
+        <p>Enter a Role Value.</p>
+        <input type="number" min="2" id='userInput'>
+        <button onclick="myFunction()">Submit</button>
+        <button onclick="location.reload()">Reload</button>
+        <button onclick="clearLi()">Clear</button>
+        </br>
+        <ul id="myList" class="myList">
         </ul>
     </div>
 
@@ -38,9 +32,26 @@
             'Adjunct', 'Emeritus'
         ];
         var po2 = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536];
+        var parent;
+        var children;
+        var node;
+        var textnode;
+        var userIn;
+
+        function clearLi() {
+            children = document.getElementsByTagName('li');
+            if (document.getElementsByTagName('li').length > 0) {
+                for (let i = (children.length - 1); i >= 0; i--) {
+                    children[i].remove();
+                }
+            }
+        }
 
         function myFunction() {
-            var userIn = document.getElementById('userInput').value;
+
+            clearLi();
+
+            userIn = document.getElementById('userInput').value;
             for (var i = 16; i > 0; i--) {
                 if (po2[i] <= userIn) {
                     print(roles[i]);
@@ -53,8 +64,8 @@
         }
 
         function print(roleText) {
-            var node = document.createElement("LI");
-            var textnode = document.createTextNode(roleText);
+            node = document.createElement("LI");
+            textnode = document.createTextNode(roleText);
             node.appendChild(textnode);
             document.getElementById("myList").appendChild(node);
         }
